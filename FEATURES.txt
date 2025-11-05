@@ -1,0 +1,32 @@
+TaskTop
+
+landing page✔️
+
+login✔️
+
+signup✔️
+name (format here)✔️
+email✔️
+password✔️ 
+retype password✔️
+
+time in include date
+
+group box / group checkbox
+
+general announcements = Floating Button
+create a post - upload picture, text
+
+records page
+
+account page
+add photo
+change details
+change password
+
+technicals
+session based
+add google notifications
+
+stack
+react and Firebase✔️

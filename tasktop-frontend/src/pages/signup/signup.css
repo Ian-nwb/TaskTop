@@ -1,0 +1,223 @@
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh; /* Key for mobile! */
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: auto;   /* Critical! Allow body to scroll */
+  overflow-x: hidden;
+}
+
+/* Center container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-y: auto; /* enable scrolling when needed */
+}
+
+/* Form */
+.signup-form {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title */
+.signup-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.02em;
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.4rem;
+}
+
+.input-group input,
+.input-group select {
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #666;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Two-column name fields */
+.name-fields {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.name-fields .input-group {
+  flex: 1;
+  min-width: 140px;
+}
+
+@media (max-width: 600px) {
+  .name-fields {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ---------- PASSWORD EYE ICON STYLES ---------- */
+.password-group {
+  position: relative;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* make room for the eye */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.eye-icon:hover {
+  color: #ccc;
+}
+
+/* ---------- END PASSWORD EYE ICON STYLES ---------- */
+
+/* Signup button */
+.signup-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.signup-btn:hover {
+  background-color: #e5e5e5;
+  transform: translateY(-2px);
+}
+
+.signup-btn:active {
+  transform: translateY(0);
+}
+
+/* Login link */
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  word-break: break-word;
+}
+
+.login-link a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* Inline link button (used for "Login") */
+.link-button {
+  background: none;
+  border: none;
+  color: #ffffff;               /* fallback instead of var(--accent) */
+  cursor: pointer;
+  text-decoration: underline;
+  font: inherit;
+  padding: 0;
+}
+
+.link-button:hover {
+  opacity: 0.8;
+}
+
+/* Larger screens */
+@media (min-width: 1200px) {
+  .signup-form {
+    padding: 3rem;
+    max-width: 480px;
+  }
+  .signup-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Smaller devices fix (e.g., iPhone SE) */
+@media (max-height: 600px) {
+  .signup-container {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .signup-form {
+    padding: 1.5rem;
+  }
+}

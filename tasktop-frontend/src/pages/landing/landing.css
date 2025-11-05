@@ -1,0 +1,111 @@
+/* Reset + prevent scrolling */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Vercel-inspired minimalist design */
+.landing-container {
+  height: 100vh;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Inter", system-ui, sans-serif;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Title gradient */
+.landing-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtitle */
+.landing-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #aaa;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* Buttons */
+.landing-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap; /* allows slight wrapping if screen is too small */
+}
+
+.btn {
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 120px;
+}
+
+/* Login Button */
+.login-btn {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #222;
+}
+
+.login-btn:hover {
+  background-color: #222;
+  transform: translateY(-2px);
+}
+
+/* Signup Button */
+.signup-btn {
+  background-color: #fff;
+  color: #000;
+}
+
+.signup-btn:hover {
+  background-color: #e5e5e5;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.landing-footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive text only — buttons stay side by side */
+@media (max-width: 600px) {
+  .landing-title {
+    font-size: 2rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
