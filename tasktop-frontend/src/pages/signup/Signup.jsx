@@ -19,6 +19,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    position: "",        // ← NEW
     company: "Capstone",
   });
 
@@ -31,63 +32,60 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-  const { email, password, confirmPassword, firstName, lastName, company } = formData;
+    const { email, password, confirmPassword, firstName, lastName, position, company } = formData;
 
-  if (password !== confirmPassword) {
-    setError("Passwords do not match");
-    setLoading(false);
-    return;
-  }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
 
-  if (password.length < 6) {
-    setError("Password must be 6+ characters");
-    setLoading(false);
-    return;
-  }
+    if (password.length < 6) {
+      setError("Password must be 6+ characters");
+      setLoading(false);
+      return;
+    }
 
-  try {
-    // 1. Create Auth user
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-    // 2. Save to Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      uid: user.uid,
-      firstName,
-      lastName,
-      email,
-      company,
-      createdAt: new Date().toISOString(),
-    });
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        firstName,
+        lastName,
+        email,
+        position,           // ← SAVED TO FIRESTORE
+        company,
+        createdAt: new Date().toISOString(),
+      });
 
-    alert("Signup successful!");
-    navigate("/login");
-  } catch (err) {
-    console.error("Signup error:", err);
-    setError(
-      err.code === "auth/email-already-in-use"
-        ? "Email already exists"
-        : "Signup failed. Try again."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+      alert("Signup successful!");
+      navigate("/login");
+    } catch (err) {
+      console.error("Signup error:", err);
+      setError(
+        err.code === "auth/email-already-in-use"
+          ? "Email already exists"
+          : "Signup failed. Try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1 className="signup-title">Create Your Account</h1>
 
-        {/* Error banner */}
         {error && <p className="error-msg">{error}</p>}
 
-        {/* Name fields */}
         <div className="name-fields">
           <div className="input-group">
             <label>First Name</label>
@@ -113,7 +111,6 @@ const Signup = () => {
           </div>
         </div>
 
-        {/* Email */}
         <div className="input-group">
           <label>Email</label>
           <input
@@ -126,7 +123,6 @@ const Signup = () => {
           />
         </div>
 
-        {/* Password + eye */}
         <div className="input-group password-group">
           <label>Password</label>
           <div className="password-wrapper">
@@ -138,16 +134,12 @@ const Signup = () => {
               onChange={handleChange}
               required
             />
-            <span
-              className="eye-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </span>
           </div>
         </div>
 
-        {/* Confirm password + eye */}
         <div className="input-group password-group">
           <label>Retype Password</label>
           <div className="password-wrapper">
@@ -159,37 +151,41 @@ const Signup = () => {
               onChange={handleChange}
               required
             />
-            <span
-              className="eye-icon"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
+            <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
               <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
             </span>
           </div>
         </div>
 
-        {/* Company */}
+        {/* POSITION FIELD – ABOVE COMPANY */}
+        <div className="input-group">
+          <label>Position</label>
+          <input
+            type="text"
+            name="position"
+            placeholder="e.g. Software Engineer"
+            value={formData.position}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* COMPANY */}
         <div className="input-group">
           <label>Company</label>
           <select name="company" value={formData.company} onChange={handleChange}>
             <option value="Capstone">Capstone</option>
-            <option value="Skopos">Skopos</option>
+            <option value="Scopos">Scopos</option>
           </select>
         </div>
 
-        {/* Submit */}
         <button type="submit" className="signup-btn" disabled={loading}>
           {loading ? "Creating…" : "Sign Up"}
         </button>
 
-        {/* Login link */}
         <p className="login-link">
           Already have an account?{" "}
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => navigate("/login")}
-          >
+          <button type="button" className="link-button" onClick={() => navigate("/login")}>
             Login
           </button>
         </p>

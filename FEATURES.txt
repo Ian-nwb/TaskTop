@@ -16,6 +16,7 @@ group box / group checkbox
 
 general announcements = Floating Button
 create a post - upload picture, text
+announcements tags/ legends
 
 records page
 

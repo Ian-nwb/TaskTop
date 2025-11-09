@@ -1,0 +1,26 @@
+/* userLayout.css – flex grid for navbar + sidebar + content */
+.user-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;               /* same dark bg as Vercel */
+}
+
+.user-layout-body {
+  flex: 1;
+  display: flex;
+}
+
+/* Sidebar takes its own width (260px on desktop) */
+.user-layout-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Mobile – stack sidebar over content when drawer opens */
+@media (max-width: 768px) {
+  .user-layout-main {
+    padding: 1rem;
+  }
+}

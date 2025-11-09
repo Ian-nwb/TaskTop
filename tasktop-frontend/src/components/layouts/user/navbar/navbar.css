@@ -1,0 +1,108 @@
+/* navbar.css – Vercel-inspired design with responsive layout */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+  width: 100vw;
+  background-color: #111111;
+  padding-left: clamp(120px, 50%, 120px);
+  padding-right: 80px;
+  box-shadow: 0px 4px 48px var(--primary-color-opacity-15);
+  transition: padding 0.3s ease, background-color 0.3s ease;
+  animation: fadeSlideIn 0.5s ease forwards;
+}
+
+/* Header Section */
+.navbar-header {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-header p {
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-24);
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+/* Main Section (account, etc.) */
+.navbar-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(10px, 32px, 60px);
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* Account button */
+.navbar-main-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6vh;
+  width: 6vh;
+  background-color: var(--white-color);
+  border-radius: 100px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.navbar-main-account:hover {
+  transform: scale(1.05);
+  background-color: var(--white-color-hover, #f9f9f9);
+}
+
+/* Account img inside button */
+.navbar-main-account img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+/* === Animation Keyframes === */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive (Mobile) === */
+@media (max-width: 768px) {
+  .navbar {
+    padding-left: 4.8rem;
+    padding-right: 2rem;
+  }
+
+  .navbar-header p {
+    font-size: 20px;
+  }
+
+  .navbar-main {
+    gap: 16px;
+  }
+
+  .navbar-main-account {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-main-account img {
+    width: 16px;
+    height: 16px;
+  }
+}
